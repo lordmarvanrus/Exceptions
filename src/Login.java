@@ -13,6 +13,9 @@ public class Login {
             if (!(password.equals(confirmPassword))) {
                 throw new WrongPasswordException();
             }
+            if (!(match(password))) {
+                throw new WrongPasswordException();
+            }
         } catch (WrongLoginException e) {
             System.out.println("Неправильный логин");
             return false;
@@ -23,5 +26,8 @@ public class Login {
 
         }
         return true;
+    }
+    public static boolean match(String password) {
+        return password.matches("\\w+");
     }
 }
